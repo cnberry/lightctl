@@ -71,16 +71,13 @@ def cmd_status(device_id: str, as_json: bool) -> int:
 
 
 def cmd_set(device_id: str, power: bool) -> int:
-    verb = "on" if power else "off"
     try:
         result = set_lights(power, device_id)
     except LightsError as exc:
         print(f"lightctl error: {exc}", file=sys.stderr)
         return 2
 
-    print(f"- Device: {result['name']} ({result['device_id']})")
-    print(f"- Requested: {verb}")
-    print(f"- Current state: {'on' if result['state'] else 'off'}")
+    print(f"{result['device_id']}: {'on' if result['state'] else 'off'}")
     return 0
 
 
