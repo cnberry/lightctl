@@ -29,6 +29,9 @@ Think: UNIX tool, not home-automation sludge.
 - **Update docs when the shape settles.**
   When a change feels right, update `README.md` and `AGENTS.md` in the same stretch of work.
 
+- **Prefer pipx for installed CLI usage.**
+  For daily use, these tools should behave like normal commands on the user path. Reserve local venv activation for development and testing.
+
 ## Current shape
 
 - `lightctl/lights.py` — local config loading, reachability checks, and Tuya-backed light control
