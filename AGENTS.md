@@ -38,6 +38,7 @@ Think: UNIX tool, not home-automation sludge.
 - `lightctl/cli.py` — command-line entrypoint
 - `config/` — local light configuration (real config ignored, example committed)
 - `runbooks/` — setup notes for device onboarding
+- `pyproject.toml` explicitly packages only the `lightctl` module so config/runbook folders do not confuse editable installs
 
 `SKILL.md` lives at the repo root so Botty can use this CLI directly when Chris asks for house-light actions in chat.
 
