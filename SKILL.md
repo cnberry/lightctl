@@ -27,14 +27,14 @@ cd REPO_ROOT/lightctl
 
 ```bash
 lightctl list
-lightctl status landscape-lights
+lightctl device status landscape-lights
 ```
 
 ### Control
 
 ```bash
-lightctl on landscape-lights
-lightctl off landscape-lights
+lightctl device on landscape-lights
+lightctl device off landscape-lights
 ```
 
 Use for requests like:

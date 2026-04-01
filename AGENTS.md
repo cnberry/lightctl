@@ -43,7 +43,7 @@ Think: UNIX tool, not home-automation sludge.
 
 ## Near-term roadmap
 
-1. Align CLI shape more closely with `poolctl`
+1. Keep the noun-first CLI shape clean and boring
 2. Add `status --json` consistency across commands
 3. Add `config` subcommands if useful
 4. Keep install/reinstall workflow clean via `pipx`

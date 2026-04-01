@@ -13,14 +13,17 @@ def build_parser() -> argparse.ArgumentParser:
 
     sub.add_parser("list", help="list configured devices")
 
-    status = sub.add_parser("status", help="show status for a configured device")
+    device = sub.add_parser("device", help="operate on a configured device")
+    device_sub = device.add_subparsers(dest="device_command", required=True)
+
+    status = device_sub.add_parser("status", help="show status for a configured device")
     status.add_argument("device", help="config device id")
     status.add_argument("--json", action="store_true", help="emit raw JSON")
 
-    on = sub.add_parser("on", help="turn a configured device on")
+    on = device_sub.add_parser("on", help="turn a configured device on")
     on.add_argument("device", help="config device id")
 
-    off = sub.add_parser("off", help="turn a configured device off")
+    off = device_sub.add_parser("off", help="turn a configured device off")
     off.add_argument("device", help="config device id")
 
     return parser
@@ -87,12 +90,13 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "list":
         return cmd_list()
-    if args.command == "status":
-        return cmd_status(args.device, args.json)
-    if args.command == "on":
-        return cmd_set(args.device, True)
-    if args.command == "off":
-        return cmd_set(args.device, False)
+    if args.command == "device":
+        if args.device_command == "status":
+            return cmd_status(args.device, args.json)
+        if args.device_command == "on":
+            return cmd_set(args.device, True)
+        if args.device_command == "off":
+            return cmd_set(args.device, False)
 
     parser.print_help()
     return 1

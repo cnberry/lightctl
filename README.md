@@ -27,9 +27,9 @@ The structure is being aligned with `poolctl` so both repos feel like siblings.
 ## Commands
 
 - `lightctl list`
-- `lightctl status landscape-lights`
-- `lightctl on landscape-lights`
-- `lightctl off landscape-lights`
+- `lightctl device status landscape-lights`
+- `lightctl device on landscape-lights`
+- `lightctl device off landscape-lights`
 
 Default output is compact and human-readable.
 
@@ -68,6 +68,7 @@ python3 -m venv .venv
 . .venv/bin/activate
 pip install -r requirements.txt
 python lightctl.py list
+python lightctl.py device status landscape-lights
 ```
 
 Or, if you have `just` and `pipx` installed:

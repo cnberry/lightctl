@@ -16,10 +16,10 @@ list:
     lightctl list
 
 status device:
-    lightctl status {{device}}
+    lightctl device status {{device}}
 
 on device:
-    lightctl on {{device}}
+    lightctl device on {{device}}
 
 off device:
-    lightctl off {{device}}
+    lightctl device off {{device}}
