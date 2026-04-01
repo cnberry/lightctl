@@ -1,0 +1,31 @@
+{
+  "devices": {
+    "landscape-lights": {
+      "name": "Landscape Lights",
+      "backend": "tuya-local-candidate",
+      "host": "192.168.1.50",
+      "port": 6668,
+      "device_id": "replace-with-device-id",
+      "local_key": "",
+      "switch_dp": "1",
+      "protocol_version": "3.4",
+      "product_key": "mkj6tqfft975ltud",
+      "notes": [
+        "Use a meaningful house-facing name instead of OEM branding.",
+        "Populate local_key after extraction from the linked Tuya project.",
+        "This file is intentionally not a public secret store."
+      ]
+    },
+    "testplug": {
+      "name": "TestPlug",
+      "backend": "tuya-smart-test-device",
+      "host": "192.168.1.60",
+      "port": 6668,
+      "device_id": "replace-with-device-id",
+      "local_key": "",
+      "switch_dp": "1",
+      "protocol_version": "3.3",
+      "product_key": "kneovghpxlnyvhst"
+    }
+  }
+}
