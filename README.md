@@ -93,8 +93,22 @@ The point is to keep a few useful local lighting actions scriptable, inspectable
 - `AGENTS.md` — project principles and engineering intent
 - `SKILL.md` — lets an agent/chat workflow drive the CLI directly
 
+## Built with
+
+This repo was created with:
+- OpenClaw 2026.3.28 (`f9b1079`)
+- OpenAI GPT 5.4
+
 ## Current shape
 
 This repo is intentionally small.
 It is not trying to absorb every lighting backend on earth.
 The bar for new features is simple: useful, local-first when possible, and easy to explain from the command line.
+
+## Agent-first repo notes
+
+This repo is intended to be agent-friendly as well as human-friendly.
+The standard agent-first files live at the repo root:
+- `README.md` — human-facing overview
+- `AGENTS.md` — project principles and working conventions
+- `SKILL.md` — direct agent usage guidance
