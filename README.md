@@ -1,93 +1,80 @@
 # lightctl 💡🤖🔌
 
-A terminal-first local light control tool for flipping house lights without app-store sludge.
+A terminal-first local lighting control tool for flipping lights without cloud lag, app-store sludge, or mystery meat UX.
 
-## Goals
+`lightctl` is a sibling of `poolctl` and `hottubctl`: small commands, readable output, and config that stays local.
 
-- Control local lights from a small CLI
-- Prefer LAN/local control over cloud dependency
-- Use meaningful house-facing names
-- Keep the interface sharp, boring, and scriptable
+## What it does
 
-## Status
+- lists configured lights and switches
+- shows per-device status and readiness
+- turns named devices on and off
+- prefers local/LAN control over cloud dependency when possible
 
-Early local-light CLI, currently focused on configured Tuya-family devices.
-The structure is being aligned with `poolctl` so both repos feel like siblings.
+## Install
 
-## Visual identity
-
-```text
-    .--.
- .-(    ).        lightctl
-(___.__)__)       💡🤖🔌
-   |    |
-   |____|
+```bash
+git clone git@github.com:your-user/lightctl.git
+cd lightctl
+just install
 ```
+
+That installs `lightctl` with `pipx` so it behaves like a normal command on your shell path.
+
+Useful `just` targets:
+
+```bash
+just list
+just status outdoor-lights
+just on outdoor-lights
+just off outdoor-lights
+```
+
+## Local config
+
+`lightctl` looks for config in this order:
+- `$LIGHTCTL_CONFIG`
+- `~/.config/lightctl/lights.json`
+- `~/.lightctl/lights.json`
+- repo-local `config/lights.json` (dev-only fallback)
+
+Start from:
+- `config/lights.example.json`
+
+Do not commit real local keys or live device details.
 
 ## Commands
 
 - `lightctl list`
-- `lightctl device status landscape-lights`
-- `lightctl device on landscape-lights`
-- `lightctl device off landscape-lights`
+- `lightctl device status outdoor-lights`
+- `lightctl device on outdoor-lights`
+- `lightctl device off outdoor-lights`
 
 Default output is compact and human-readable.
-
-## Config
-
-Local light config lives in:
-- `config/lights.json`
-
-Template:
-- `config/lights.example.json`
-
-Do not commit real local keys.
-
-## Install
-
-Preferred install for a real always-available CLI:
-
-```bash
-pipx install --editable .
-```
-
-After edits:
-
-```bash
-pipx reinstall --editable .
-```
-
-That puts `lightctl` on your normal user path without requiring venv activation for daily use.
+Use `lightctl list` when you forget what you named things, which will happen because humans are like that.
 
 ## Development
 
-Classic direct shell flow:
+For early setup or device experimentation:
 
 ```bash
 python3 -m venv .venv
 . .venv/bin/activate
 pip install -r requirements.txt
 python lightctl.py list
-python lightctl.py device status landscape-lights
+python lightctl.py device status outdoor-lights
 ```
 
-Or, if you have `just` and `pipx` installed:
+Once the CLI is useful, prefer the installed command shape via `just install` / `just reinstall`.
 
-```bash
-just install
-just list
-just status landscape-lights
-```
+## Why this repo exists
 
-## Maintenance rule
+The point is not to become Yet Another Home Automation Platform.
+The point is to keep a few useful local lighting actions scriptable, inspectable, and pleasantly boring.
 
-When a behavior or interface change feels like a keeper, update the docs immediately:
-- `README.md` for user-facing changes
-- `AGENTS.md` for project principles and engineering intent
+## Extra docs
 
-Clean code. Good code. Updated docs.
-
-## Notes for agents and future-us
-
-See `AGENTS.md` for project principles and repo shape.
-`SKILL.md` lives at the repo root so Botty can use this CLI directly from chat requests.
+- `config/lights.example.json` — starter example config
+- `runbooks/tuya-local-setup.md` — notes for onboarding local Tuya-family devices
+- `AGENTS.md` — project principles and engineering intent
+- `SKILL.md` — lets an agent/chat workflow drive the CLI directly
