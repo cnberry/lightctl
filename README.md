@@ -53,6 +53,20 @@ Do not commit real local keys or live device details.
 Default output is compact and human-readable.
 Use `lightctl list` when you forget what you named things, which will happen because humans are like that.
 
+Example status output:
+
+```text
+Light/switch status
+-------------------
+- Config id: outdoor-lights
+- Name: Outdoor Lights
+- Backend: tuya-local-candidate
+- Host: 192.168.1.50:6668
+- Ready for local control: yes
+- Network reachability: ok
+- Current state: off
+```
+
 ## Development
 
 For early setup or device experimentation:
@@ -78,3 +92,9 @@ The point is to keep a few useful local lighting actions scriptable, inspectable
 - `runbooks/tuya-local-setup.md` — notes for onboarding local Tuya-family devices
 - `AGENTS.md` — project principles and engineering intent
 - `SKILL.md` — lets an agent/chat workflow drive the CLI directly
+
+## Current shape
+
+This repo is intentionally small.
+It is not trying to absorb every lighting backend on earth.
+The bar for new features is simple: useful, local-first when possible, and easy to explain from the command line.
