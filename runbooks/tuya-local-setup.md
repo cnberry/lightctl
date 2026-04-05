@@ -42,8 +42,8 @@ Without these, the API may return `No permissions` even if the device is visible
 
 ### 5. Add API IP whitelist entry
 - In the Tuya cloud project, add the network's **public IPv4** to the API whitelist.
-- For this environment, the IPv4 that worked was `203.0.113.10`.
-- IPv6 was not accepted by Tuya in this flow.
+- Use the current public IPv4 for the machine making the API calls.
+- IPv6 may not be accepted by Tuya in this flow, so verify with IPv4 first.
 
 ### 6. Get the cloud credentials
 From the project overview/details page, collect:
@@ -68,8 +68,12 @@ Once the project is linked, APIs are authorized, and IPv4 whitelist is set, use 
 
 For this workspace, an IPv4-only workaround was required when calling the Tuya API from Python because Tuya rejected IPv6-whitelist-less requests.
 
-### 9. Record the device in `config/lights.json`
-Add/update fields:
+### 9. Record the device in local config
+Copy `config/lights.example.json` to one of:
+- `~/.config/lightctl/lights.json`
+- `~/.lightctl/lights.json`
+
+Then add/update fields:
 - `host`
 - `device_id`
 - `local_key`
@@ -77,28 +81,28 @@ Add/update fields:
 - `switch_dp`
 - `mac` if known
 
-Use meaningful house-facing names in config ids, e.g. `landscape-lights`, not OEM labels.
+Use meaningful house-facing names in config ids, e.g. `outdoor-lights`, not OEM labels.
 
 ### 10. Verify local control
 Use:
 ```bash
-python3 lightctl.py status <device-id>
-python3 lightctl.py on <device-id>
-python3 lightctl.py off <device-id>
+lightctl device status <config-id>
+lightctl device on <config-id>
+lightctl device off <config-id>
 ```
 
-## Proven working examples
-### TestPlug
-- name: `TestPlug`
+## Example device shapes
+### Test plug
+- name: `Test Plug`
 - host: `192.168.1.60`
 - device_id: `replace-with-device-id`
 - protocol_version: `3.3`
 - switch_dp: `1`
 - cloud function code: `switch_1`
 
-### Landscape Lights
-- config id: `landscape-lights`
-- Tuya project/device label used during extraction: `Landscape Power`
+### Outdoor lights
+- config id: `outdoor-lights`
+- Tuya project/device label used during extraction: `Outdoor Lights`
 - host: `192.168.1.50`
 - device_id: `replace-with-device-id`
 - protocol_version: `3.4`

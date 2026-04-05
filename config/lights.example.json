@@ -1,7 +1,7 @@
 {
   "devices": {
-    "landscape-lights": {
-      "name": "Landscape Lights",
+    "outdoor-lights": {
+      "name": "Outdoor Lights",
       "backend": "tuya-local-candidate",
       "host": "192.168.1.50",
       "port": 6668,
@@ -9,15 +9,15 @@
       "local_key": "",
       "switch_dp": "1",
       "protocol_version": "3.4",
-      "product_key": "mkj6tqfft975ltud",
+      "product_key": "replace-with-product-key",
       "notes": [
         "Use a meaningful house-facing name instead of OEM branding.",
         "Populate local_key after extraction from the linked Tuya project.",
-        "This file is intentionally not a public secret store."
+        "Keep real device details in ~/.config/lightctl/lights.json, not in git."
       ]
     },
-    "testplug": {
-      "name": "TestPlug",
+    "test-plug": {
+      "name": "Test Plug",
       "backend": "tuya-smart-test-device",
       "host": "192.168.1.60",
       "port": 6668,
@@ -25,7 +25,7 @@
       "local_key": "",
       "switch_dp": "1",
       "protocol_version": "3.3",
-      "product_key": "kneovghpxlnyvhst"
+      "product_key": "replace-with-product-key"
     }
   }
 }

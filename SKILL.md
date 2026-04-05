@@ -1,6 +1,6 @@
 ---
 name: lightctl
-description: Control Chris's local house lights from the `lightctl` CLI. Use when asked to list configured lights, check light status, turn named lights on or off, inspect local light config/readiness, or operate supported local Tuya-family devices from this repo.
+description: Control local house lights from the `lightctl` CLI. Use when asked to list configured lights, check light status, turn named lights on or off, inspect local light config/readiness, or operate supported local Tuya-family devices from this repo.
 ---
 
 # lightctl
@@ -16,10 +16,17 @@ Use the local `lightctl` CLI from this repository.
 
 ## Run from repo root
 
+Preferred daily-use flow:
+
 ```bash
 cd REPO_ROOT/lightctl
-. .venv/bin/activate
+lightctl list
 ```
+
+Local config is expected at one of:
+- `$LIGHTCTL_CONFIG`
+- `~/.config/lightctl/lights.json`
+- `~/.lightctl/lights.json`
 
 ## Command map
 

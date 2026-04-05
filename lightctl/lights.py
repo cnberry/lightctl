@@ -9,9 +9,13 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parent.parent
-CONFIG_DIR = ROOT / "config"
-DEFAULT_CONFIG_PATH = CONFIG_DIR / "lights.json"
 ENV_CONFIG_PATH = "LIGHTCTL_CONFIG"
+DEFAULT_CONFIG_BASENAME = "lights.json"
+SEARCH_DIRS = [
+    Path.home() / ".config" / "lightctl",
+    Path.home() / ".lightctl",
+    ROOT / "config",
+]
 VENV_PY = ROOT / ".venv" / "bin" / "python"
 
 
@@ -37,14 +41,18 @@ def _config_path() -> Path:
     override = os.environ.get(ENV_CONFIG_PATH)
     if override:
         return Path(override).expanduser()
-    return DEFAULT_CONFIG_PATH
+    for directory in SEARCH_DIRS:
+        candidate = directory / DEFAULT_CONFIG_BASENAME
+        if candidate.exists():
+            return candidate
+    return SEARCH_DIRS[0] / DEFAULT_CONFIG_BASENAME
 
 
 def load_lights_config() -> dict[str, Any]:
     path = _config_path()
     if not path.exists():
         raise LightsNotConfiguredError(
-            "lights config not found. create config/lights.json with your local device credentials"
+            f"lights config not found at {path}. create it from config/lights.example.json or set {ENV_CONFIG_PATH}"
         )
     with path.open() as f:
         return json.load(f)
